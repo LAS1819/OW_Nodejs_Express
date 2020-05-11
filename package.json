@@ -2,9 +2,10 @@
   "name": "ow_nodejs_express",
   "version": "1.0.0",
   "description": "Curso OpenWebinars Nodejs y Express",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --require babel-register src\\index.js",
+    "lint": "standard 'src/**/*.js'"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,11 @@
   },
   "homepage": "https://github.com/LAS1819/OW_Nodejs_Express#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
   }
 }
