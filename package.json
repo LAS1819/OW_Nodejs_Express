@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node --require babel-register src\\index.js",
-    "lint": "standard 'src/**/*.js'"
+    "lint": "standard 'src\\**\\*.js'"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "openwebinars"
   ],
   "author": "LxS7",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/LAS1819/OW_Nodejs_Express/issues"
   },
