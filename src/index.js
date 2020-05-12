@@ -84,4 +84,5 @@ rl.question(
 		}
 		console.warn('Antes del cierre de ReadLine');
 		rl.close()
+		console.warn('Después del cierre de ReadLine');
 	})
