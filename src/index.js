@@ -58,6 +58,7 @@ import async from './async'
 import events from './events'
 
 const file = process.argv[2]
+console.warn(file)
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -75,9 +76,12 @@ rl.question(
 		switch (value) {
 			case '2':
 				events(file)
+				console.warn('Final del Switch (Eventos)');
 				break
 			default:
 				async(file)
+				console.warn('Final del Switch (Asíncrono)');
 		}
+		console.warn('Antes del cierre de ReadLine');
 		rl.close()
 	})
