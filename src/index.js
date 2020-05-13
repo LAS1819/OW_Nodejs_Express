@@ -1,5 +1,5 @@
 
-
+var colors = require('colors');
 /* // PARTE 1
 import fs from 'fs'
 import readline from 'readline'
@@ -48,7 +48,7 @@ console.log(`Fichero seleccionado: ${file}`)
 */
 
 
-
+/*
 // PARTE 3 MODULARIZACIÓN
 
 // Muestra el número total de líneas, y el número de palabras por línea
@@ -86,3 +86,34 @@ rl.question(
 		rl.close()
 		console.warn('Después del cierre de ReadLine');
 	})
+*/
+
+
+// PARTE DE LOS SOCKETS
+
+import net from 'net'
+
+console.warn('Inicio aplicación'.red);
+
+const server = net.createServer(socket => {
+	socket.on('data', data => {
+		console.log(data.toString())
+		socket.write(`${data.toString()} ¿Mundo?`)
+
+	})
+})
+
+server.on('error', () => console.log('Se ha producido un error'))
+
+// server.on('error', err => {
+// 	throw err
+// })
+
+server.listen(
+	{
+		host: 'localhost',
+		port: 8000,
+		exclusive: true
+	},
+	() => console.warn(`Servidor socket abierto en ${server.address()}`.brightBlue)
+)
