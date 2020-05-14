@@ -2,18 +2,45 @@
 import http from 'http'
 // Importamos la librería file system para leer el html en este caso
 import fs from 'fs'
+// Utilizamos la librería path que proporciona node para analizar la ruta por la que se accede a la publicación
+import path from 'path'
 
 // Guardamos en una constante el fichero que vamos a leer
 const file = './src/index.html'
 
 // Creamos servidor
 const server = http.createServer((request, response) => {
+	// Primero comprobamos por qué ruta accede el ususario
+	let filePath = request.url
+	// Si es desde 'barra' (/)
+	if (filePath === '/') {
+		filePath = 'index.html'
+	}
+
+	// Si no accede desde barra no hace falta comprobarlo
+	filePath = `./src/${filePath}`
+
+	// Comprobamos los tipos de archivo que acceden
+	// Dependiendo de la extensión del fichero
+	// Guardamos la extensión del archivo con path
+	const extname = path.extname(filePath)
+
+	let contentType
+	switch (extname) {
+		case '.css':
+			contentType = 'text/css'
+			break;
+		case '.html':
+			contentType = 'text/html'
+			break
+	}
+
 	// Advertimos que la cabecera correcta (200) es HTML y está codificada en UTF-8
-	response.writeHead(200, {'Content-Type': 'text/html; charset:UTF-8'})
+	response.writeHead(200, {'Content-Type': `${contentType}; charset=UTF-8`})
 	//response.writeHead(200, {'Content-Type': 'application/json'})
 
 	// Leemos el fichero con fs
-	fs.readFile(file, (err, content) => {
+	fs.readFile(filePath, (err, content) => {
 		if (err) {
 			return cosnole.log(err)
 		}
