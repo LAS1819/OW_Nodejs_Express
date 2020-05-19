@@ -26,6 +26,7 @@
   "homepage": "https://github.com/LAS1819/OW_Nodejs_Express#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
+    "body-parser": "^1.19.0",
     "braces": "^3.0.2",
     "colors": "^1.4.0",
     "express": "^4.17.1",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.3"
   }
 }
