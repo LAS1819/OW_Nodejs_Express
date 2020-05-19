@@ -1,8 +1,11 @@
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+// La librería PATH ya esta en el propio node
+import path from 'path';
 
 const app = express();
+
 // Desactivamos el aviso de que estamos usando Express en nuestra cabecera
 app.disable('x-powered-by');
 
@@ -17,8 +20,18 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+// Decimos que vamos a utilizar como motor de plantilla PUG y nuestras vistas están en un directorio en concreto
+// src/views
+app.set('views', path.join(__dirname, 'views'));
+
+// Decimos el motor de plantilla
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => {
-	res.end('Hola Mundo!');
+	res.render('home', {
+		title: 'Curso de Openwebinars',
+		message: 'Primer Layout con variables'
+	});
 });
 
 app.listen('9000', () => {
