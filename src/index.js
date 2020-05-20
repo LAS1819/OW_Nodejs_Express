@@ -65,7 +65,7 @@ app.get('/temario', (req, res, next) => {
 
 // Creams un layout para las posibles rutas de usuario
 // '/:user' -> magic param
-app.get('/:user', (req, res) => {
+app.get('/:user', (req, res, next) => {
 	res.render('user', {
 		title: 'Openwebinars - User',
 		message: `Bienvenido usuario ${req.params.user}`
@@ -79,8 +79,16 @@ app.get('/:user', (req, res) => {
 // La anterior ruta se puede hacer más fácilmente con
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
-
-
+// ------------Midleware----------
+// Si usa una ruta que no está definida, le enviamos un error 404
+app.use((req, res, next) => {
+	res.status(404).render('404', {
+		title: 'Openwebinars - Error',
+		message: 'La ruta no existe.'
+	})
+	next(err)
+	res.end()
+})
 
 
 app.listen('9000', () => {
