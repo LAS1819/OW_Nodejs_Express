@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 // La librería PATH ya esta en el propio node
 import path from 'path';
+// Importamos el router que hemos creado
+import router from './router'
 
 const app = express();
 
@@ -34,44 +36,8 @@ app.set('view engine', 'pug');
 
 
 // Rutas
-// Ruta para HOME
-app.get('/', (req, res, next) => {
-	res.render('home', {
-		title: 'Curso de Openwebinars',
-		message: 'Curso de NodeJS - Home'
-	});
+router(app)
 
-	res.end();
-});
-
-// Ruta inicial (raíz ('/'))
-// app.get('/', (req, res) => {
-// 	res.write(`
-// 		<h1>Curso OpenWebinars</h1>
-// 		<a href="/temario">Temarios</a>
-// 		<a href="/home">Home</a>
-// 	`)
-// 	res.end();
-// })
-
-// Ruta a temario
-app.get('/temario', (req, res, next) => {
-	res.render('temario', {
-		title: 'CURSO de OpenWebinars',
-		message: 'Temario del curso de NodeJS'
-	})
-	res.end();
-})
-
-// Creams un layout para las posibles rutas de usuario
-// '/:user' -> magic param
-app.get('/:user', (req, res, next) => {
-	res.render('user', {
-		title: 'Openwebinars - User',
-		message: `Bienvenido usuario ${req.params.user}`
-	})
-	res.end()
-})
 
 // app.get('/static', (req, res) => {
 // 	path.join(__dirname, `public/${req.url}`)
