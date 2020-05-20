@@ -23,13 +23,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 
-// Decimos el motor de plantilla
-app.set('view engine', 'pug');
+
 
 // Decimos que vamos a utilizar como motor de plantilla PUG y nuestras vistas están en un directorio en concreto
 // src/views
 app.set('views', path.join(__dirname, 'views'));
 
+// Decimos el motor de plantilla
+app.set('view engine', 'pug');
 
 
 // Rutas
@@ -61,6 +62,12 @@ app.get('/temario', (req, res, next) => {
 	})
 	res.end();
 })
+
+// app.get('/static', (req, res) => {
+// 	path.join(__dirname, `public/${req.url}`)
+// })
+// La anterior ruta se puede hacer más fácilmente con
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 
 
