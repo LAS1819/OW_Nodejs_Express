@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node --require babel-register src/index.js",
     "watch": "nodemon",
-    "lint": "standard 'src/*.js'"
+    "lint": "standard 'src/*.js'",
+    "test": "NODE_ENV=test mocha --require babel-core/register --timeout 10000 tests/"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,12 @@
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "cheerio": "^1.0.0-rc.3",
+    "got": "^11.1.4",
+    "mocha": "^7.1.2",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "win-node-env": "^0.4.0"
   }
 }
