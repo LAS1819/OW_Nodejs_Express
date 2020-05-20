@@ -63,6 +63,16 @@ app.get('/temario', (req, res, next) => {
 	res.end();
 })
 
+// Creams un layout para las posibles rutas de usuario
+// '/:user' -> magic param
+app.get('/:user', (req, res) => {
+	res.render('user', {
+		title: 'Openwebinars - User',
+		message: `Bienvenido usuario ${req.params.user}`
+	})
+	res.end()
+})
+
 // app.get('/static', (req, res) => {
 // 	path.join(__dirname, `public/${req.url}`)
 // })
