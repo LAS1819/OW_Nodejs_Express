@@ -9,6 +9,8 @@ const app = express();
 // Desactivamos el aviso de que estamos usando Express en nuestra cabecera
 app.disable('x-powered-by');
 
+
+
 // Le decimos al servidor que estamos en desarrollo
 app.set('env', 'development');
 
@@ -20,19 +22,49 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// Decimos que vamos a utilizar como motor de plantilla PUG y nuestras vistas están en un directorio en concreto
-// src/views
-app.set('views', path.join(__dirname, 'views'));
 
 // Decimos el motor de plantilla
 app.set('view engine', 'pug');
 
-app.get('/', (req, res) => {
+// Decimos que vamos a utilizar como motor de plantilla PUG y nuestras vistas están en un directorio en concreto
+// src/views
+app.set('views', path.join(__dirname, 'views'));
+
+
+
+// Rutas
+// Ruta para HOME
+app.get('/', (req, res, next) => {
 	res.render('home', {
 		title: 'Curso de Openwebinars',
-		message: 'Primer Layout con variables'
+		message: 'Curso de NodeJS - Home'
 	});
+
+	res.end();
 });
+
+// Ruta inicial (raíz ('/'))
+// app.get('/', (req, res) => {
+// 	res.write(`
+// 		<h1>Curso OpenWebinars</h1>
+// 		<a href="/temario">Temarios</a>
+// 		<a href="/home">Home</a>
+// 	`)
+// 	res.end();
+// })
+
+// Ruta a temario
+app.get('/temario', (req, res, next) => {
+	res.render('temario', {
+		title: 'CURSO de OpenWebinars',
+		message: 'Temario del curso de NodeJS'
+	})
+	res.end();
+})
+
+
+
+
 
 app.listen('9000', () => {
 	console.log('Servidor arrancado en http://localhost:9000')
