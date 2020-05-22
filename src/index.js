@@ -19,10 +19,18 @@ const server = {
 		
 		
 		_server = app.listen('9000', () => {
+			const address = _server.address()
+			const host = address.address === '::'
+				? 'localhost'
+				: address
+			const port = app.locals.config.PORT
+
 			if (process.env.NODE_ENV !== 'test') {
-				console.log('Servidor abierto en http://localhost:9000')
+				console.log(`Servidor abierto en http://${host}:${port}`)
 			}
 		})
+
+		return _server
 	},
 	close() {
 		_server.close();
