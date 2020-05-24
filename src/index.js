@@ -4,6 +4,8 @@ import express from 'express';
 import config from './config';
 // Importamos las rutas
 import router from './router';
+// Importamos la conexión de socket
+import { connect } from './socket'
 
 let _server;
 
@@ -19,6 +21,8 @@ const server = {
 		
 		
 		_server = app.listen('9000', () => {
+			connect(
+				)
 			const address = _server.address()
 			const host = address.address === '::'
 				? 'localhost'
