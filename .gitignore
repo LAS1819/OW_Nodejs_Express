@@ -1,5 +1,8 @@
 # Project Directories
 .env
+dist/*
+Old_Src/*
+Renderizado/*
 
 # Logs
 logs

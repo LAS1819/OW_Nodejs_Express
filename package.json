@@ -7,6 +7,7 @@
     "start": "node --require babel-register src/index.js",
     "watch": "nodemon",
     "lint": "standard 'src/*.js'",
+    "build": "babel src -d dist",
     "test": "NODE_ENV=test mocha --require babel-core/register --timeout 10000 tests/"
   },
   "repository": {
@@ -26,11 +27,11 @@
   },
   "homepage": "https://github.com/LAS1819/OW_Nodejs_Express#readme",
   "dependencies": {
-    "babel-cli": "^6.26.0",
     "body-parser": "^1.19.0",
     "braces": "^3.0.2",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
+    "docker": "^1.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jwt-simple": "^0.5.6",
@@ -40,6 +41,8 @@
     "ws": "^7.3.0"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
@@ -48,6 +51,7 @@
     "mocha": "^7.1.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.3",
+    "pm2": "^4.4.0",
     "supertest": "^4.0.2",
     "win-node-env": "^0.4.0"
   }
